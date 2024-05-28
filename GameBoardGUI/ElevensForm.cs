@@ -61,6 +61,28 @@ namespace ElevensBoardGUI
 
         private void btnRestartGame_Click(object sender, EventArgs e)
         {
+            // reference to list of picture boxes
+            // should not be class element due to being a feature of nonstatic form
+            List<PictureBox> pictureBoxes = PicBoxToList();
+
+            // reset card buttons if they were pressed before pressing restart 
+            for (int i = 0; i < pbClicked.Count; i++)
+            {
+                if (pbClicked[i] && pictureBoxes[i].Image != null)
+                {
+                    pbClicked[i] = false;
+                    updatePictureBox(i);
+
+                }
+            }
+
+            // if game was restarted and a move was made, +1 losses
+            if (board.deck.listOfCards.Count < 43)
+            {
+                ++losses;
+                label2.Text = ($"You've won {wins} out of {wins + losses} games");
+            }
+
             SetUpNewGame();
         }
 
@@ -115,12 +137,14 @@ namespace ElevensBoardGUI
                     label2.Text = ($"You've won {wins} out of {wins + losses} games");
                     SetUpNewGame();
                 }
-                else if (!board.BoardIsEmpty() && !board.NextPlayPossible())
-                {
-                    ++losses;
-                    label2.Text = ($"You've won {wins} out of {wins + losses} games");
-                    SetUpNewGame();
-                }
+                //// deprecated: new change lets player recognize when it's a loss
+                //// rather than automatically resetting the board
+                //else if (!board.BoardIsEmpty() && !board.NextPlayPossible())
+                //{
+                //    ++losses;
+                //    label2.Text = ($"You've won {wins} out of {wins + losses} games");
+                //    SetUpNewGame();
+                //}
 
             }
 
