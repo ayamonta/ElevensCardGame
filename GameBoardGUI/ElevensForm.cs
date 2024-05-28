@@ -105,7 +105,9 @@ namespace ElevensBoardGUI
                     pictureBoxes[index].Image = null;
                 }
 
-
+                board.DealCards();
+                RefillPictureBoxes();
+                label1.Text = ($"{board.deck.listOfCards.Count} undealt cards remain");
 
                 if (board.BoardIsEmpty())
                 {
@@ -119,12 +121,7 @@ namespace ElevensBoardGUI
                     label2.Text = ($"You've won {wins} out of {wins + losses} games");
                     SetUpNewGame();
                 }
-                else
-                {
-                    board.DealCards();
-                    RefillPictureBoxes();
-                    label1.Text = ($"{board.deck.listOfCards.Count} undealt cards remain");
-                }
+
             }
 
         }
