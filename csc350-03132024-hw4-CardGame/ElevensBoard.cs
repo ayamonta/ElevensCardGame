@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,18 +11,10 @@ namespace CardGame
     public class ElevensBoard : Board
     {
 
-        //public ElevensBoard() : base(9)
-        //{
-        //    //base.boardSize = 9;
-        //    //BoardSize = 9;
-        //    //boardSize = 4;
-        //}
+        public override int BoardSize { get{ return 9; } set { } }
 
         public ElevensBoard() : base()
         {
-            //base.boardSize = 9;
-            BoardSize = 9;
-            //boardSize = 4;
         }
 
         public override bool IsLegal(List<int> selectedCards)

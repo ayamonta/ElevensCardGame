@@ -32,7 +32,7 @@ namespace CardGame
                     // display current board
                     Console.WriteLine("Current board: ");
 
-                    for (int i = 0; i < board.boardSize; i++)
+                    for (int i = 0; i < board.BoardSize; i++)
                     {
                         if (board.cardsOnBoard[i] != null)
                         {

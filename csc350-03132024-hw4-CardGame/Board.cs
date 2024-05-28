@@ -10,36 +10,27 @@ namespace CardGame
 
     public abstract class Board
     {
-        public int boardSize = 9;
         public Deck deck;
         public Card[] cardsOnBoard;
 
-        public int BoardSize
+        abstract public int BoardSize
         {
-            get { return boardSize; }
-            set { boardSize = value; }
+            get;
+            set;
         }
-
-        //public Board(int SIZE)
-        //{
-        //    // instantiate a deck of cards
-        //    deck = new Deck();
-        //    // make room on the board for [boardSize] cards
-        //    cardsOnBoard = new Card[SIZE];
-
-        //    NewGame_DistributeCards();
-        //}
 
         public Board()
         {
             // instantiate a deck of cards
             deck = new Deck();
             // make room on the board for [boardSize] cards
-            cardsOnBoard = new Card[boardSize];
+            cardsOnBoard = new Card[BoardSize];
 
             NewGame_DistributeCards();
 
         }
+
+
 
         public abstract bool IsLegal(List<int> selectedCards);
         public abstract bool NextPlayPossible();
@@ -62,7 +53,7 @@ namespace CardGame
             deck.Shuffle();
 
             // place cards on the board for beginning of game
-            for (int i = 0; i < boardSize; i++)
+            for (int i = 0; i < BoardSize; i++)
             {
                 cardsOnBoard[i] = deck.TakeTopCard();
             }  
@@ -79,7 +70,7 @@ namespace CardGame
         // deal cards every time a play is made and cards are removed from board
         public void DealCards()
         {
-            for (int i = 0; i < boardSize; i++)
+            for (int i = 0; i < BoardSize; i++)
             {
                 if (cardsOnBoard[i] == null)
                 {
